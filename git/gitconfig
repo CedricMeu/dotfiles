@@ -1,0 +1,11 @@
+[user]
+	name = CedricMeu
+	email = cedric.meukens@icloud.com
+[alias]
+  ac = !git add -A && git commit
+  p = !git push
+  pu = !git push -u
+[core]
+  editor = nvim
+[diff]
+  external = difft
