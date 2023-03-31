@@ -1,0 +1,27 @@
+- defaults:
+  link:
+    create: true
+    relink: true
+
+- clean: ['~']
+
+- link:
+  ~/.Brewfile: ./homebrew/Brewfile
+  ~/.config/nvim/: ./nvim
+  ~/.zshrc: ./zsh/.zshrc
+  ~/.oh-my-zsh: ./ohmyzsh/
+  ~/.config/yabai/: ./yabai/
+  ~/.config/skhd/: ./skhd/
+
+- shell:
+  - [which brew > /dev/null && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)", Installing homebrew]
+  - [homebrew update, Updating homebrew]
+  - [homebrew upgrade, Upgrading hombrew packages]
+  - 
+    command: brew bundle --global
+    description: Installing homebrew dependencies
+    stdout: true
+  - [chsh -s $(which zsh), Making zsh the default shell]
+  - [git submodule update --init --recursive, Installing submodules]
+# - start or restart yabai
+# - start or restart skhd
