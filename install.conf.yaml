@@ -1,27 +1,35 @@
 - defaults:
-  link:
-    create: true
-    relink: true
+    link:
+      create: true
+      relink: true
+    shell:
+      quiet: true
 
 - clean: ['~']
 
 - link:
-  ~/.Brewfile: ./homebrew/Brewfile
-  ~/.config/nvim/: ./nvim
-  ~/.zshrc: ./zsh/.zshrc
-  ~/.oh-my-zsh: ./ohmyzsh/
-  ~/.config/yabai/: ./yabai/
-  ~/.config/skhd/: ./skhd/
+    ~/.Brewfile: ./homebrew/Brewfile
+    ~/.config/nvim/: ./nvim
+    ~/.zshrc: ./zsh/.zshrc
+    ~/.oh-my-zsh: ./ohmyzsh/
+    ~/.config/yabai/: ./yabai/
+    ~/.config/skhd/: ./skhd/
 
 - shell:
-  - [which brew > /dev/null && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)", Installing homebrew]
-  - [homebrew update, Updating homebrew]
-  - [homebrew upgrade, Upgrading hombrew packages]
+  # - [which brew > /dev/null && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)", Installing homebrew]
+  - 
+    command: brew update
+    description: Updating homebrew
+    stdout: true
+  - 
+    command: brew upgrade
+    description: Upgrading hombrew packages
+    stdout: true
   - 
     command: brew bundle --global
     description: Installing homebrew dependencies
     stdout: true
-  - [chsh -s $(which zsh), Making zsh the default shell]
+  - ["if [[ $(which zsh) != $SHELL ]] ; then sudo chsh -s $(which zsh) $USER ; fi", Making zsh the default shell]
   - [git submodule update --init --recursive, Installing submodules]
   - [brew services restart yabai, Start yabai]
   - [brew services restart skhd, Start skhd]
