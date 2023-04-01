@@ -33,3 +33,4 @@
   - [git submodule update --init --recursive, Installing submodules]
   - [brew services restart yabai, Start yabai]
   - [brew services restart skhd, Start skhd]
+  - [rustup-init -y, Install rust toolchain]
