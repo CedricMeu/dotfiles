@@ -89,6 +89,6 @@ return {
       vim.diagnostic.open_float({ scope = "cursor" })
     end, { desc = "diagnostic Help" })
 
-    vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]])
+    vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
   end
 }

@@ -29,6 +29,10 @@
     command: brew bundle --global
     description: Installing homebrew dependencies
     stdout: true
+  -
+    command: brew bundle cleanup --global --force
+    description: Removing unspecified homebrew dependencies
+    stdout: true
   - ["if [[ $(which zsh) != $SHELL ]] ; then sudo chsh -s $(which zsh) $USER ; fi", Making zsh the default shell]
   - [git submodule update --init --recursive, Installing submodules]
   - [brew services restart yabai, Start yabai]

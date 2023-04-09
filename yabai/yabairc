@@ -56,7 +56,7 @@ yabai -m rule --add app='^System Information$' manage=off
 yabai -m rule --add app='^System Preferences$' manage=off
 yabai -m rule --add title='Preferences$' manage=off
 yabai -m rule --add title='Logi Options$' manage=off
-yabai -m rule --add title='AnyConnect$' manage=off
+yabai -m rule --add title='AnyConnect' manage=off
 
 # float settings windows
 yabai -m rule --add title='Settings$' manage=off
