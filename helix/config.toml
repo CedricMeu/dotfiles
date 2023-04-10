@@ -1,0 +1,34 @@
+theme = "catppuccin_frappe"
+
+[editor]
+line-number = "relative"
+bufferline = "always"
+color-modes = true
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+right = ["diagnostics", "selections", "position", "file-encoding", "version-control"]
+
+[editor.indent-guides]
+render = true
+
+[keys.normal]
+C-s = ":w"
+C-q = ":q"
+
+[keys.normal.g]
+a = "code_action"
+
+[keys.insert]
+C-s = ":w"
+C-q = ":q"
+
+[keys.insert.j]
+k = "normal_mode"
