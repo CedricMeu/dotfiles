@@ -8,13 +8,14 @@
 
 - link:
     ~/.Brewfile: ./homebrew/Brewfile
-    ~/.config/nvim/: ./nvim
+    ~/.config/nvim/: ./nvim/
     ~/.zshrc: ./zsh/.zshrc
-    ~/.oh-my-zsh: ./ohmyzsh/
+    ~/.oh-my-zsh/: ./ohmyzsh/
     ~/.config/yabai/: ./yabai/
     ~/.config/skhd/: ./skhd/
     ~/.gitconfig: ./git/gitconfig
-    ~/.config/helix: ./helix
+    ~/.config/helix/: ./helix/
+    ~/.hammerspoon/: ./hammerspoon/
 
 - shell:
   # - [which brew > /dev/null && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)", Installing homebrew]
@@ -36,6 +37,7 @@
     stdout: true
   - ["if [[ $(which zsh) != $SHELL ]] ; then sudo chsh -s $(which zsh) $USER ; fi", Making zsh the default shell]
   - [git submodule update --init --recursive, Installing submodules]
-  - [brew services restart yabai, Start yabai]
-  - [brew services restart skhd, Start skhd]
+  # - [brew services restart yabai, Start yabai]
+  # - [brew services restart skhd, Start skhd]
   - [rustup-init -y, Install rust toolchain]
+  - [open -a Hammerspoon, Start hammerspoon]
