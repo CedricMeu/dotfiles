@@ -6,6 +6,6 @@
   p = !git push
   pu = !git push -u
 [core]
-  editor = nvim
+  editor = hx
 [diff]
   external = difft
