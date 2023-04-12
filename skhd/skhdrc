@@ -6,17 +6,13 @@ alt - l : yabai -m window --focus east
 alt - n : yabai -m window --focus stack.next
 alt - p : yabai -m window --focus stack.prev
 
-# rotate screen
-# alt - r : yabai -m space --rotate 270
-# alt + shift - r : yabai -m space --rotate 90
-
 # shift window in current workspace
 alt + shift - h : yabai -m window --swap west
 alt + shift - j : yabai -m window --swap south
 alt + shift - k : yabai -m window --swap north
 alt + shift - l : yabai -m window --swap east
 
-# move managed window
+# move window
 alt + ctrl - h : yabai -m window --warp west
 alt + ctrl - j : yabai -m window --warp south
 alt + ctrl - k : yabai -m window --warp north
@@ -32,30 +28,6 @@ alt + shift + ctrl - s : yabai -m window --insert stack
 # focus workspace
 alt + shift - n : yabai -m space --focus next
 alt + shift - p : yabai -m space --focus prev
-# alt - 1 : yabai -m space --focus 1
-# alt - 2 : yabai -m space --focus 2
-# alt - 3 : yabai -m space --focus 3
-# alt - 4 : yabai -m space --focus 4
-# alt - 5 : yabai -m space --focus 5
-# alt - 6 : yabai -m space --focus 6
-# alt - 7 : yabai -m space --focus 7
-# alt - 8 : yabai -m space --focus 8
-# alt - 9 : yabai -m space --focus 9
-# alt - 0 : yabai -m space --focus 10
-
-# move focused window to workspace
-# alt + shift - n : yabai -m window --space next; yabai -m space --focus next
-# alt + shift - p : yabai -m window --space prev; yabai -m space --focus prev
-# alt + shift - 1 : yabai -m window --space 1; yabai -m space --focus 1
-# alt + shift - 2 : yabai -m window --space 2; yabai -m space --focus 2
-# alt + shift - 3 : yabai -m window --space 3; yabai -m space --focus 3
-# alt + shift - 4 : yabai -m window --space 4; yabai -m space --focus 4
-# alt + shift - 5 : yabai -m window --space 5; yabai -m space --focus 5
-# alt + shift - 6 : yabai -m window --space 6; yabai -m space --focus 6
-# alt + shift - 7 : yabai -m window --space 7; yabai -m space --focus 7
-# alt + shift - 8 : yabai -m window --space 8; yabai -m space --focus 8
-# alt + shift - 9 : yabai -m window --space 9; yabai -m space --focus 9
-# alt + shift - 0 : yabai -m window --space 10; yabai -m space --focus 0
 
 # Full screen
 alt - f : yabai -m window --toggle native-fullscreen 
@@ -65,7 +37,7 @@ alt - t : yabai -m window --toggle float;\
           yabai -m window --grid 4:4:1:1:2:2
 
 # Open terminal
-alt - return : open /Applications/iTerm.app
+alt - return : open -a iTerm
 
 # toggle window split type
 alt - e : yabai -m window --toggle split
