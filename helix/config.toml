@@ -4,9 +4,17 @@ theme = "dracula"
 line-number = "relative"
 bufferline = "always"
 color-modes = true
+auto-format = true
 
 [editor.lsp]
 display-inlay-hints = true
+display-messages = true
+
+[editor.soft-wrap]
+enable = true
+
+[editor.file-picker]
+hidden = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -22,9 +30,8 @@ render = true
 [keys.normal]
 C-s = ":w"
 C-q = ":q"
-
-[keys.normal.g]
-a = "code_action"
+tab = ":buffer-next"
+S-tab = ":buffer-previous"
 
 [keys.insert]
 C-s = ":w"

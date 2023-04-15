@@ -1,0 +1,16 @@
+[[language]]
+name = "lua"
+auto-format = true
+
+[[language]]
+name = "python"
+auto-format = true
+
+[[language]]
+name = "rust"
+auto-format = true
+
+[[language]]
+name = "java"
+indent = { tab-width = 2, unit = " " }
+auto-format = true
