@@ -40,4 +40,4 @@
   # - [brew services restart yabai, Start yabai]
   # - [brew services restart skhd, Start skhd]
   - [rustup-init -y, Install rust toolchain]
-  - [open -a Hammerspoon, Start hammerspoon]
+  # - [open -a Hammerspoon, Start hammerspoon]
