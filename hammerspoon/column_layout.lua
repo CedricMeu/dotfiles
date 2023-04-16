@@ -1,5 +1,3 @@
-local Space = require("space")
-
 -- utils
 local function reversed(t)
   local rev = {}
@@ -70,6 +68,7 @@ end
 
 function Column:addWindow(window)
   table.insert(self.windows, window)
+  self.onChange()
 end
 
 function Column:focusPreviousWindow()
@@ -141,6 +140,8 @@ function Column:removeWindow(window)
       self.activeWindow = self.windows[#self.windows]
     end
   end
+
+  self.onChange()
 
   return self.activeWindow
 end

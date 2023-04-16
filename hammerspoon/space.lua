@@ -18,6 +18,7 @@ function Space.new(layout, osSpace)
       self.osSpace:frame().h
     )
   end)
+
   return self
 end
 

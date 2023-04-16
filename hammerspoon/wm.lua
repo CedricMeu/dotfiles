@@ -15,16 +15,28 @@
 -- Remove animations
 hs.window.animationDuration = 0
 
-ColumnLayout = require("column_layout")
+local ColumnLayout = require("column_layout")
+local Space = require("space")
 
 --- Module
 --- module
 local module = {
   started = false,
-  defaultLayout = nil,
   spaces = {},
   windowFilter = hs.window.filter.new(),
+  spacesWatcher = hs.spaces.watcher.new()
 }
+
+function module.new()
+  local self = {}
+  setmetatable(self, module)
+  self.__index = self
+  self.started = false
+  self.spaces = {}
+  self.windowFilter = hs.window.filter.new()
+  self.spacesWatcher = hs.spaces.watcher.new(self:updateSpaces)
+  return self
+end
 
 module.windowFilter:setDefaultFilter {}
 module.windowFilter:setSortOrder(hs.window.filter.sortByFocusedLast)
@@ -61,6 +73,8 @@ function module:start(defaultLayout)
     self:window_focused(window)
   end)
 
+  self.spacesWatcher:start()
+
   self.started = true
 end
 
@@ -71,17 +85,36 @@ function module:stop()
   end
 
   self.windowFilter:unsubscribeAll()
+  self.spacesWatcher:stop()
+
   self.started = false
 end
 
 function module:updateSpaces()
-  if self.defaultLayout == nil then
-    error("No default layout was specified")
-  end
-
+  print("updating spaces")
   local osSpaces = hs.spaces.allSpaces()
-end
+  local spacesBackup = self.spaces
+  self.spaces = {}
 
--- TODO: handle spaces
+  for _, osSpace in pairs(osSpaces) do
+    local foundInBackup = false
+
+    -- Search for backup space
+    for _, spaceBackup in pairs(spacesBackup) do
+      if osSpace == spaceBackup:getOsSpace() then
+        table.insert(self.spaces, spaceBackup)
+        foundInBackup = true
+        break
+      end
+    end
+
+    -- Create new
+    if not foundInBackup then
+      local layout = ColumnLayout.new()
+      local space = Space.new(layout, osSpace)
+      table.insert(self.spaces, space)
+    end
+  end
+end
 
 return module
