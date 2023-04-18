@@ -2,62 +2,66 @@
 local StackLayout = {
   ---@type table<integer, hs.window.filter>
   windows = {},
-  ---@type integer
-  activeWindowId = nil,
+  ---@type integer[]
+  order = {},
 }
 StackLayout.__index = StackLayout
 
 ---Create a new StackLayout
----@param spaceId integer
----@return StackLayout|nil # Returns nil if space is full screen or a native tiled space, or the space does not exist
+---@return StackLayout
 ---@nodiscard
-function StackLayout.new(spaceId)
-  if not hs.spaces.spaceType(spaceId) == "user" then
-    return nil
-  end
-
+function StackLayout.new()
   local self = setmetatable({}, StackLayout)
-  self.spaceId = spaceId
   self.windows = {}
+  self.order = {}
   return self
 end
 
----Get sorted list of the ids of the windows managed by the layout
----@return integer[]
----@nodiscard
----@private
-function StackLayout:windowIdsSorted()
-  local ids = {}
-
-  for id, _ in pairs(self.windows) do
-    table.insert(ids, id)
-  end
-
-  table.sort(ids)
-
-  return ids
-end
-
 ---Update layout
----@private
 function StackLayout:apply()
   for windowId, _ in pairs(self.windows) do
     local window = hs.window.get(windowId)
     window:maximize()
   end
 
-  -- TODO: Remove self.activeWindowId, and use rotating of an array with windows
-  if self.activeWindowId ~= nil then
-    local activeWindow = hs.window.get(self.activeWindowId)
-    activeWindow:raise()
+  local activeWindowId = self:getActiveWindowId()
+  if activeWindowId ~= nil then
+    local topMostWindow = hs.window.get(activeWindowId)
+    topMostWindow:raise()
   end
 end
 
+---Handler for when focus is changed onto a window in the stack
+---@param window hs.window
+---@pre window is in self.windows
+---@private
+function StackLayout:focusChanged(window)
+  local windowId = window:id()
+
+  if not hs.fnutils.contains(self.order, windowId) then
+    error("Window to which focus changed is not in this layout")
+  end
+
+  while self:getActiveWindowId() ~= windowId do
+    local first = table.remove(self.order) --[[ @as hs.window ]]
+    table.insert(self.order, 1, first)
+  end
+
+  print("order changed")
+  for _, id in pairs(self.order) do
+    print(id)
+  end
+  print("")
+end
+
 ---Get active window in layout
----@return integer
+---@return integer | nil # id of the active window, or nil if there are no windows
 ---@nodiscard
 function StackLayout:getActiveWindowId()
-  return self.activeWindowId
+  if #self.order == 0 then
+    return nil
+  end
+  return self.order[#self.order]
 end
 
 ---Add window to layout
@@ -70,6 +74,8 @@ function StackLayout:addWindow(window)
     return
   end
 
+  table.insert(self.order, windowId)
+
   self.windows[windowId] = hs.window.filter.new(
   ---@param filteredWindow hs.window
     function(filteredWindow)
@@ -78,13 +84,10 @@ function StackLayout:addWindow(window)
 
   self.windows[windowId]:subscribe(hs.window.filter.windowFocused,
     ---@param cbWindow hs.window
-    ---@param appName string
-    ---@param event string
-    ---@diagnostic disable-next-line: unused-local
-    function(cbWindow, appName, event)
-      print("active window changed")
-      self.activeWindowId = cbWindow:id() --[[ @as integer ]]
+    function(cbWindow, _, _)
+      self:focusChanged(cbWindow)
     end, true)
+
 
   self:apply()
 end
@@ -97,11 +100,51 @@ function StackLayout:removeWindow(window)
   self.windows[windowId]:unsubscribeAll()
   self.windows[windowId] = nil
 
-  if self.activeWindowId == windowId then
-    self.activeWindowId = nil
-  end
+  self.order = hs.fnutils.filter(self.order, function(id)
+    return id ~= windowId
+  end) --[[ @as integer[] ]]
 
   self:apply()
+end
+
+---Check if window in layout
+---@param window hs.window
+---@return boolean
+function StackLayout:containsWindow(window)
+  return self.windows[window:id()] ~= nil
+end
+
+---Focus
+---@return boolean # wether a window in the layout took focus
+function StackLayout:focus()
+  local activeWindowId = self:getActiveWindowId()
+  if activeWindowId == nil then
+    return false
+  end
+
+  local window = hs.window.get(activeWindowId)
+
+  self:apply()
+  window:focus()
+  return true
+end
+
+---Focus next window
+--@return boolean # wether a window in the layout took focus
+function StackLayout:focusNext()
+  local next = table.remove(self.order, 1)
+  table.insert(self.order, next)
+
+  return self:focus()
+end
+
+---Focus previous window
+---@return boolean # wether a window in the layout took focus
+function StackLayout:focusPrevious()
+  local next = table.remove(self.order)
+  table.insert(self.order, 1, next)
+
+  return self:focus()
 end
 
 return StackLayout
