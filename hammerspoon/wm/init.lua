@@ -29,6 +29,9 @@ function WindowManager.new()
   local self = setmetatable({}, WindowManager)
   self.spaces = {}
   self.windowFilter = hs.window.filter.new()
+  self.spacesWatcher = hs.spaces.watcher.new(function()
+    self:updateSpaces()
+  end)
 
   -- FIXME:
   -- LuaSkin: hs.spaces.watcher callback: /Users/cedricmeukens/.hammerspoon/wm/stack_layout.lua:24: attempt to index a nil value (local 'window')
