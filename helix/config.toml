@@ -28,14 +28,14 @@ right = ["diagnostics", "selections", "position", "file-encoding", "version-cont
 render = true
 
 [keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+i = ["insert_mode", "collapse_selection"]
+a = ["append_mode", "collapse_selection"]
 C-s = ":w"
-C-q = ":q"
-tab = ":buffer-next"
-S-tab = ":buffer-previous"
+C-q = ":bc"
 
 [keys.insert]
 C-s = ":w"
-C-q = ":q"
 
 [keys.insert.j]
 k = "normal_mode"

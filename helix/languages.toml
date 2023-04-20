@@ -5,6 +5,9 @@ auto-format = true
 [[language]]
 name = "python"
 auto-format = true
+roots = ["pyproject.toml"]
+language-server = { command = "pyright-langserver", args = ["--stdio"] }
+config = {}
 
 [[language]]
 name = "rust"
@@ -16,5 +19,21 @@ indent = { tab-width = 2, unit = " " }
 auto-format = true
 
 [[language]]
+name = "html"
+auto-format = true
+
+[[language]]
 name = "typescript"
+auto-format = true
+
+[[language]]
+name = "tsx"
+auto-format = true
+
+[[language]]
+name = "javascript"
+auto-format = true
+
+[[language]]
+name = "tsx"
 auto-format = true
