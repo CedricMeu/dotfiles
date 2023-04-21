@@ -21,13 +21,17 @@ end
 function StackLayout:apply()
   for windowId, _ in pairs(self.windows) do
     local window = hs.window.get(windowId)
-    window:maximize()
+    if window ~= nil then
+      window:maximize()
+    end
   end
 
   local activeWindowId = self:getActiveWindowId()
   if activeWindowId ~= nil then
-    local topMostWindow = hs.window.get(activeWindowId)
-    topMostWindow:raise()
+    local topMostWindow = hs.window(activeWindowId)
+    if topMostWindow ~= nil then
+      topMostWindow:raise()
+    end
   end
 end
 

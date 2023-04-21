@@ -61,7 +61,8 @@ function WindowManager:updateSpaces()
   end
 
   self.spaces = spaces
-  for _, layout in ipairs(self.spaces) do
+
+  for _, layout in pairs(self.spaces) do
     layout:apply()
   end
 end
