@@ -1,0 +1,5 @@
+inherits = "ayu_light"
+
+"ui.statusline.normal" = { fg = "white", bg = "light-blue" }
+"ui.statusline.insert" = { fg = "white", bg = "light-green" }
+"ui.statusline.select" = { fg = "white", bg = "magenta" }

@@ -1,4 +1,4 @@
-theme = "dracula"
+theme = "ayu_light_custom"
 
 [editor]
 line-number = "relative"
