@@ -24,16 +24,42 @@ auto-format = true
 
 [[language]]
 name = "typescript"
+indent = { tab-width = 4, unit = " " }
 auto-format = true
+# language-server = { command = "multi-lsp-proxy", args = [
+#   "--config",
+#   "~/.config/helix/multi-lsp-proxy/typescript-emmet.toml"
+# ]}
 
 [[language]]
 name = "tsx"
+indent = { tab-width = 4, unit = " " }
 auto-format = true
+# language-server = { command = "multi-lsp-proxy", args = [
+#   "--config",
+#   "~/.config/helix/multi-lsp-proxy/typescript-emmet.toml"
+# ]}
 
 [[language]]
 name = "javascript"
+indent = { tab-width = 4, unit = " " }
 auto-format = true
 
 [[language]]
-name = "tsx"
+name = "jsx"
+indent = { tab-width = 4, unit = " " }
 auto-format = true
+
+[[language]]
+name = "typst"
+scope = "source.typst"
+injection-regex = "typst"
+roots = []
+comment-token = "//"
+file-types = ["typ"]
+indent = { tab-width = 2, unit = " " }
+language-server = { command = "typst-lsp" }
+
+[[grammar]]
+name = "typst"
+source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev="af40989c1a2e724a9625cae412c17a60969280ca" }

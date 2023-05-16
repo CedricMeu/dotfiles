@@ -139,3 +139,6 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # alias for nvim
 alias v="hx"
+
+# alis for ls
+alias ls="exa --icons -l"

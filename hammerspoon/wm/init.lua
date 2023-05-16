@@ -1,5 +1,4 @@
 -- [x] Stacking windows in space
--- [ ] change window to fullscreen
 -- [x] itterate through stack
 -- [x] WM listens to space changes
 -- [x] WM listens to window changes
@@ -9,11 +8,11 @@
 
 hs.window.animationDuration = 0
 
-local StackLayout = require("wm.stack_layout")
+local StackingColumnsLayout = require("wm.stacking_columns_layout")
 
 ---@class WindowManager
 local WindowManager = {
-  ---@type table<integer, StackLayout>
+  ---@type table<integer, StackingColumnsLayout>
   spaces = {},
   ---@type hs.window.filter
   windowFilter = nil,
@@ -30,40 +29,39 @@ function WindowManager.new()
   self.spaces = {}
   self.windowFilter = hs.window.filter.new()
   self.spacesWatcher = hs.spaces.watcher.new(function()
-    self:updateSpaces()
+    self:update()
   end)
 
-  -- FIXME:
-  -- LuaSkin: hs.spaces.watcher callback: /Users/cedricmeukens/.hammerspoon/wm/stack_layout.lua:24: attempt to index a nil value (local 'window')
-  -- stack traceback:
-  -- 	/Users/cedricmeukens/.hammerspoon/wm/stack_layout.lua:24: in function 'wm.stack_layout.apply'
-  -- 	/Users/cedricmeukens/.hammerspoon/wm/init.lua:56: in function 'wm.updateSpaces'
-  -- 	/Users/cedricmeukens/.hammerspoon/wm/init.lua:32: in function </Users/cedricmeukens/.hammerspoon/wm/init.lua:32>  self.spacesWatcher = hs.spaces.watcher.new(function(_) self:updateSpaces() end)
   return self
 end
 
+-- TODO: rename to `update`, call `update` (still `apply`) of all columns
 ---Updated self.spaces
-function WindowManager:updateSpaces()
+function WindowManager:update()
   local spacesByScreen = hs.spaces.allSpaces() --[[ @as table<string, integer[]> ]]
-  ---@type table<integer, StackLayout>
+  ---@type table<integer, StackingColumnsLayout>
   local spaces = {}
+  ---@type table<integer, hs.geometry>
+  local frames = {}
 
-  for _, spaceIds in pairs(spacesByScreen) do
+  for screenUUID, spaceIds in pairs(spacesByScreen) do
+    local frame = hs.screen.find(screenUUID):frame()
     for _, spaceId in pairs(spaceIds) do
       if hs.spaces.spaceType(spaceId) == "user" then
         if self.spaces[spaceId] ~= nil then
           spaces[spaceId] = self.spaces[spaceId]
         else
-          spaces[spaceId] = StackLayout.new()
+          spaces[spaceId] = StackingColumnsLayout.new()
         end
+        frames[spaceId] = frame
       end
     end
   end
 
   self.spaces = spaces
 
-  for _, layout in pairs(self.spaces) do
-    layout:apply()
+  for spaceId, layout in pairs(self.spaces) do
+    layout:update(frames[spaceId])
   end
 end
 
@@ -91,6 +89,8 @@ function WindowManager:addWindow(window)
   if layout ~= nil then
     self.spaces[space]:addWindow(window)
   end
+
+  self:update()
 end
 
 ---Callback for when a window is created
@@ -108,7 +108,7 @@ end
 function WindowManager:start()
   self:stop()
   self.spacesWatcher:start()
-  self:updateSpaces()
+  self:update()
 
   self.windowFilter:subscribe(hs.window.filter.windowCreated, function(window, _, _) self:addWindow(window) end, true)
   self.windowFilter:subscribe(hs.window.filter.windowDestroyed, function(window, _, _) self:removeWindow(window) end)
@@ -127,7 +127,7 @@ function WindowManager:stop()
 end
 
 ---Get current layout
----@return StackLayout
+---@return StackingColumnsLayout
 ---@nodiscard
 function WindowManager:currentLayout()
   local space = hs.spaces.activeSpaceOnScreen() -- [[ @as integer ]]

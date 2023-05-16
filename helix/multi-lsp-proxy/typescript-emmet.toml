@@ -1,0 +1,21 @@
+log-file = "/tmp/typescript-emmet-lsproxy.log"
+
+[[language]]
+name = "typescript"
+command = "typescript-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "typescript"
+command = "emmet-ls"
+args = ["--stdio"]
+
+[[language]]
+name = "tsx"
+command = "typescript-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "tsx"
+command = "emmet-ls"
+args = ["--stdio"]

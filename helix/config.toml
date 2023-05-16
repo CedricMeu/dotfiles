@@ -22,7 +22,13 @@ normal = "block"
 select = "underline"
 
 [editor.statusline]
-right = ["diagnostics", "selections", "position", "file-encoding", "version-control"]
+right = [
+  "diagnostics",
+  "selections",
+  "position",
+  "file-encoding",
+  "version-control",
+]
 
 [editor.indent-guides]
 render = true
@@ -33,6 +39,7 @@ i = ["insert_mode", "collapse_selection"]
 a = ["append_mode", "collapse_selection"]
 C-s = ":w"
 C-q = ":bc"
+"=" = ":format"
 
 [keys.insert]
 C-s = ":w"
