@@ -15,7 +15,7 @@
     ~/.config/skhd/: ./skhd/
     ~/.gitconfig: ./git/gitconfig
     ~/.config/helix/: ./helix/
-    ~/.hammerspoon/: ./hammerspoon/
+    #~/.hammerspoon/: ./hammerspoon/
     ~/.tmux.conf: ./tmux/tmux.conf
     ~/.tmux/plugins/tpm/: ./tpm/
     ~/.config/alacritty/: ./alacritty/
