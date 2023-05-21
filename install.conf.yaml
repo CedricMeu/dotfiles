@@ -16,6 +16,9 @@
     ~/.gitconfig: ./git/gitconfig
     ~/.config/helix/: ./helix/
     ~/.hammerspoon/: ./hammerspoon/
+    ~/.tmux.conf: ./tmux/tmux.conf
+    ~/.tmux/plugins/tpm/: ./tpm/
+    ~/.config/alacritty/: ./alacritty/
 
 - shell:
   # - [which brew > /dev/null && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)", Installing homebrew]
