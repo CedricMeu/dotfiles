@@ -1,5 +1,12 @@
 inherits = "ayu_light"
 
+"ui.window" = "lighter-gray"
 "ui.statusline.normal" = { fg = "white", bg = "light-blue" }
 "ui.statusline.insert" = { fg = "white", bg = "light-green" }
 "ui.statusline.select" = { fg = "white", bg = "magenta" }
+"ui.bufferline" = { fg = "gray", bg = "lighter-gray", modifiers = ["italic"] }
+"ui.bufferline.active" = { fg = "light-blue", bg = "white", modifiers = [ "italic"] }
+# "ui.popup" = { bg = "white" }
+
+[palette]
+"lighter-gray" = "#E7EAED"
