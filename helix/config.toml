@@ -25,17 +25,19 @@ normal = "block"
 select = "underline"
 
 [editor.statusline]
-left = ["mode", "spinner", "file-name"]
-right = [
-  "diagnostics",
-  "workspace-diagnostics",
-  "selections",
-  "position",
-  "file-type",
-  "file-encoding",
+separator = "󰘬"
+left = [
+  "mode",
+  "spinner",
+  "spacer",
+  "separator",
   "spacer",
   "version-control",
+  "spacer",
+  "file-base-name",
+  "file-type",
 ]
+right = ["diagnostics", "workspace-diagnostics"]
 
 [editor.indent-guides]
 render = true
