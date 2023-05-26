@@ -26,16 +26,16 @@
 
     # Editor
     ~/.config/helix/: ./helix/
-    #~/.config/nvim/: ./nvim/
-
-    # Hammerspoon
-    #~/.hammerspoon/: ./hammerspoon/
 
     # Window Manager
     #~/.config/yabai/: ./yabai/
     #~/.config/skhd/: ./skhd/
 
 - shell:
+  -
+    command: xcode-select -p > /dev/null || xcode-select --install
+    description: xcode-select --install
+    stdout: true
   - 
     command: command -v brew > /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     description: Installing homebrew
@@ -70,4 +70,3 @@
     stdout: true
   # - [brew services restart yabai, Start yabai]
   # - [brew services restart skhd, Start skhd]
-  # - [open -a Hammerspoon, Start hammerspoon]
