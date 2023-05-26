@@ -7,21 +7,39 @@
 - clean: ['~']
 
 - link:
+    # Homebrew
     ~/.Brewfile: ./homebrew/Brewfile
-    ~/.config/nvim/: ./nvim/
-    ~/.zshrc: ./zsh/.zshrc
-    ~/.oh-my-zsh/: ./ohmyzsh/
-    ~/.config/yabai/: ./yabai/
-    ~/.config/skhd/: ./skhd/
-    ~/.gitconfig: ./git/gitconfig
-    ~/.config/helix/: ./helix/
-    #~/.hammerspoon/: ./hammerspoon/
-    ~/.tmux.conf: ./tmux/tmux.conf
-    ~/.tmux/plugins/tpm/: ./tpm/
+
+    # Terminal
     ~/.config/alacritty/: ./alacritty/
 
+    # Zsh
+    ~/.zshrc: ./zsh/.zshrc
+    ~/.oh-my-zsh/: ./ohmyzsh/
+
+    # Tmux
+    ~/.tmux.conf: ./tmux/tmux.conf
+    ~/.tmux/plugins/tpm/: ./tpm/
+
+    # Git
+    ~/.gitconfig: ./git/gitconfig
+
+    # Editor
+    ~/.config/helix/: ./helix/
+    #~/.config/nvim/: ./nvim/
+
+    # Hammerspoon
+    #~/.hammerspoon/: ./hammerspoon/
+
+    # Window Manager
+    #~/.config/yabai/: ./yabai/
+    #~/.config/skhd/: ./skhd/
+
 - shell:
-  # - [which brew > /dev/null && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)", Installing homebrew]
+  - 
+    command: command -v brew > /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    description: Installing homebrew
+    stdout: true
   - 
     command: brew update
     description: Updating homebrew
@@ -38,9 +56,18 @@
     command: brew bundle cleanup --global --force
     description: Removing unspecified homebrew dependencies
     stdout: true
-  - ["if [[ $(which zsh) != $SHELL ]] ; then sudo chsh -s $(which zsh) $USER ; fi", Making zsh the default shell]
-  - [git submodule update --init --recursive, Installing submodules]
+  - 
+    command: "if [[ $(which zsh) != $SHELL ]] ; then sudo chsh -s $(which zsh) $USER ; fi"
+    description: Making zsh the default shell
+    stdout: false
+  - 
+    command: git submodule update --init --recursive
+    description: Installing submodules
+    stdout: false
+  - 
+    command: rustup-init -y
+    description: Install rust toolchain
+    stdout: true
   # - [brew services restart yabai, Start yabai]
   # - [brew services restart skhd, Start skhd]
-  - [rustup-init -y, Install rust toolchain]
   # - [open -a Hammerspoon, Start hammerspoon]
