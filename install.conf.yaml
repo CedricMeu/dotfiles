@@ -7,21 +7,38 @@
 - clean: ['~']
 
 - link:
+    # Package managers
     # ~/.Brewfile: ./homebrew/Brewfile
-    ~/.config/nvim/: ./nvim/
+    ~/.config/nix/: ./nix/
+
+    # Zsh
     ~/.zshrc: ./zsh/.zshrc
     ~/.oh-my-zsh/: ./ohmyzsh/
-    ~/.config/yabai/: ./yabai/
-    ~/.config/skhd/: ./skhd/
+
+    # Git
     ~/.gitconfig: ./git/gitconfig
+
+    # Editors
     ~/.config/helix/: ./helix/
-    #~/.hammerspoon/: ./hammerspoon/
+    # ~/.config/nvim/: ./nvim/
+
+    # Window Managers
+    # ~/.config/yabai/: ./yabai/
+    # ~/.config/skhd/: ./skhd/
+    # ~/.hammerspoon/: ./hammerspoon/
+
+    # Tmux
     ~/.tmux.conf: ./tmux/tmux.conf
     ~/.tmux/plugins/tpm/: ./tpm/
+
+    # Terminals
     ~/.config/alacritty/: ./alacritty/
 
 - shell:
-  - [command -v brew > /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)", Installing homebrew]
+  - 
+    command: command -v brew > /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    description: Installing homebrew
+    stdout: true
   - 
     command: command -v nix-shell > /dev/null || sh <(curl -L https://nixos.org/nix/install)
     description: Installing nix
@@ -42,9 +59,18 @@
     command: brew bundle cleanup --global --force
     description: Removing unspecified homebrew dependencies
     stdout: true
-  - ["if [[ $(which zsh) != $SHELL ]] ; then sudo chsh -s $(which zsh) $USER ; fi", Making zsh the default shell]
-  - [git submodule update --init --recursive, Installing submodules]
+  - 
+    command: if [[ $(which zsh) != $SHELL ]] ; then sudo chsh -s $(which zsh) $USER ; fi
+    description: Making zsh the default shell]
+    stdout: false
+  - 
+    command: git submodule update --init --recursive
+    description: Installing submodules
+    stdout: false
+  - 
+    command: rustup-init -y
+    description: Install rust toolchain
+    stoud: true
   # - [brew services restart yabai, Start yabai]
   # - [brew services restart skhd, Start skhd]
-  - [rustup-init -y, Install rust toolchain]
   # - [open -a Hammerspoon, Start hammerspoon]
