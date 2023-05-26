@@ -7,7 +7,7 @@
 - clean: ['~']
 
 - link:
-    ~/.Brewfile: ./homebrew/Brewfile
+    # ~/.Brewfile: ./homebrew/Brewfile
     ~/.config/nvim/: ./nvim/
     ~/.zshrc: ./zsh/.zshrc
     ~/.oh-my-zsh/: ./ohmyzsh/
@@ -21,7 +21,11 @@
     ~/.config/alacritty/: ./alacritty/
 
 - shell:
-  # - [which brew > /dev/null && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)", Installing homebrew]
+  - [command -v brew > /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)", Installing homebrew]
+  - 
+    command: command -v nix-shell > /dev/null || sh <(curl -L https://nixos.org/nix/install)
+    description: Installing nix
+    stdout: true
   - 
     command: brew update
     description: Updating homebrew
