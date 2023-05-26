@@ -146,4 +146,7 @@ alias ls="exa --icons -l"
 # alias for cd
 alias cd="z"
 
+# alias for gcount
+alias gcount="git shortlog -s -n --all --no-merges"
+
 export TERM="xterm-256color"

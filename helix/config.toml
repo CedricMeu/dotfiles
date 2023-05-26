@@ -5,6 +5,9 @@ line-number = "relative"
 bufferline = "always"
 color-modes = true
 auto-format = true
+scroll-lines = 1
+true-color = true
+idle-timeout = 50
 
 [editor.lsp]
 display-inlay-hints = true
@@ -22,11 +25,15 @@ normal = "block"
 select = "underline"
 
 [editor.statusline]
+left = ["mode", "spinner", "file-name"]
 right = [
   "diagnostics",
+  "workspace-diagnostics",
   "selections",
   "position",
+  "file-type",
   "file-encoding",
+  "spacer",
   "version-control",
 ]
 
@@ -40,6 +47,7 @@ a = ["append_mode", "collapse_selection"]
 C-s = ":w"
 C-q = ":bc"
 "=" = ":format"
+C-w = { "|" = "vsplit", "minus" = "hsplit" }
 
 [keys.insert]
 C-s = ":w"
