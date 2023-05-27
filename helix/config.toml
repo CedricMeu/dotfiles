@@ -50,6 +50,7 @@ C-s = ":w"
 C-q = ":bc"
 "=" = ":format"
 C-w = { "|" = "vsplit", "minus" = "hsplit" }
+space = { w = { "|" = "vsplit", "minus" = "hsplit" } }
 
 [keys.insert]
 C-s = ":w"
