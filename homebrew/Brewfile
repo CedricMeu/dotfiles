@@ -45,7 +45,7 @@ brew "cmake"
 brew "exa"
 brew "fzf"
 brew "git"
-brew "helix"
+brew "helix", args: ['HEAD']
 brew "nnn"
 brew "pnpm"
 brew "rust-analyzer"

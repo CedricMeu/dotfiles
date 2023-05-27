@@ -1,3 +1,20 @@
+[language-server.pyright]
+command = "pyright-lang-server"
+args = ["--stdio"]
+
+[language-server.typst-lsp]
+command = "typst-lsp"
+args = []
+
+[language-server.emmet-ls]
+command = "emmet-ls"
+args = ["--stdio"]
+
+[language-server.ltext-ls]
+command = "ltex-ls"
+args = []
+config = { language = "en-US" }
+
 [[language]]
 name = "lua"
 auto-format = true
@@ -6,8 +23,7 @@ auto-format = true
 name = "python"
 auto-format = true
 roots = ["pyproject.toml"]
-language-server = { command = "pyright-langserver", args = ["--stdio"] }
-config = {}
+language-servers = ["pylsp", "pyright"]
 
 [[language]]
 name = "rust"
@@ -21,24 +37,18 @@ auto-format = true
 [[language]]
 name = "html"
 auto-format = true
+# language-servers = ["vscode-html-language-server", "emmet-ls"]
 
 [[language]]
 name = "typescript"
 indent = { tab-width = 4, unit = " " }
 auto-format = true
-# language-server = { command = "multi-lsp-proxy", args = [
-#   "--config",
-#   "~/.config/helix/multi-lsp-proxy/typescript-emmet.toml"
-# ]}
 
 [[language]]
 name = "tsx"
 indent = { tab-width = 4, unit = " " }
 auto-format = true
-# language-server = { command = "multi-lsp-proxy", args = [
-#   "--config",
-#   "~/.config/helix/multi-lsp-proxy/typescript-emmet.toml"
-# ]}
+# language-servers = ["typescript-language-server", "emmet-ls"]
 
 [[language]]
 name = "javascript"
@@ -49,6 +59,11 @@ auto-format = true
 name = "jsx"
 indent = { tab-width = 4, unit = " " }
 auto-format = true
+# language-servers = ["typescript-language-server", "emmet-ls"]
+
+[[language]]
+name = "markdown"
+language-servers = ["marksman", "ltex-ls"]
 
 [[language]]
 name = "typst"
@@ -58,9 +73,8 @@ roots = []
 comment-token = "//"
 file-types = ["typ"]
 indent = { tab-width = 2, unit = " " }
-language-server = { command = "typst-lsp" }
+language-servers = ["typst-lsp", "ltex-ls"]
 
 [[grammar]]
 name = "typst"
-# source = { git = "https://github.com/SeniorMars/tree-sitter-typst", rev="2e66ef4b798a26f0b82144143711f3f7a9e8ea35" }
-source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev="af40989c1a2e724a9625cae412c17a60969280ca" }
+source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev = "af40989c1a2e724a9625cae412c17a60969280ca" }
