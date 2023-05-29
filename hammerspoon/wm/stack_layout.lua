@@ -92,7 +92,6 @@ end
 ---Remove window from layout
 ---@param window hs.window
 function StackLayout:removeWindow(window)
-  print(window)
   local windowId = window:id() --[[ @as integer ]]
 
   self.windows[windowId]:unsubscribeAll()

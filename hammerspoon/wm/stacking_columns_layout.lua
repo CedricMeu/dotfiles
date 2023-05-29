@@ -181,11 +181,12 @@ function StackingColumnsLayout:addColumnLeft()
   local index = self.activeColumn
   local newColumn = StackLayout.new()
   table.insert(self.columns, index, newColumn)
+  self.activeColumn = self.activeColumn + 1
 end
 
 ---Add a column to the right of the active column, no focus is transfered
 function StackingColumnsLayout:addColumnRight()
-  local index = hs.fnutils.indexOf(self.columns, self:getNextColumn()) --[[ @as integer ]]
+  local index = self.activeColumn + 1
   local newColumn = StackLayout.new()
   table.insert(self.columns, index, newColumn)
 end
