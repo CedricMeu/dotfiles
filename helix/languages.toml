@@ -69,7 +69,7 @@ source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev = "af4098
 name = "teal"
 scope = "source.teal"
 injection-regex = "teal"
-roots = []
+roots = ["tlconfig.lua"]
 comment-token = "#"
 file-types = ["tl"]
 indent = { tab-width = 2, unit = " " }
