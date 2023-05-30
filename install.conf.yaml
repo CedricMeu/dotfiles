@@ -78,3 +78,19 @@
     command: open -a Hammerspoon
     description: Start Hammerspoon
     stdout: false
+  -
+    command: luarocks install tl
+    description: Install teal
+    stdout: false
+  -
+    command: luarocks install --dev teal-language-server
+    description: Install teal-language-server
+    stdout: false
+  -
+    command: hx --grammar fetch
+    description: Fetching helix grammars
+    stdout: false
+  -
+    command: hx --grammar build
+    description: Building helix grammars
+    stdout: false

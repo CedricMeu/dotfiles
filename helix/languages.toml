@@ -63,4 +63,19 @@ language-server = { command = "typst-lsp" }
 [[grammar]]
 name = "typst"
 # source = { git = "https://github.com/SeniorMars/tree-sitter-typst", rev="2e66ef4b798a26f0b82144143711f3f7a9e8ea35" }
-source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev="af40989c1a2e724a9625cae412c17a60969280ca" }
+source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev = "af40989c1a2e724a9625cae412c17a60969280ca" }
+
+[[language]]
+name = "teal"
+scope = "source.teal"
+injection-regex = "teal"
+roots = []
+comment-token = "#"
+file-types = ["tl"]
+indent = { tab-width = 2, unit = " " }
+language-server = { command = "teal-language-server" }
+
+[[grammar]]
+name = "teal"
+# source = { git = "https://github.com/euclidianAce/tree-sitter-teal", rev = "2158ecce11ea542f9b791baf2c7fb33798174ed2" }
+source = { git = "https://github.com/CedricMeu/tree-sitter-teal", rev = "917d49775062167a36d6e33e868da31c4905b562" }

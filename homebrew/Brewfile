@@ -57,6 +57,7 @@ cask "mactex-no-gui"
 cask "raspberry-pi-imager"
 
 # Misc.
+brew "luarocks"
 brew "node"
 brew "tmux"
 brew "zoxide"
