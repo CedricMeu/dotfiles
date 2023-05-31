@@ -175,6 +175,7 @@ function StackingColumnsLayout:moveActiveWindowLeft()
   return self:focusLeft()
 end
 
+---@deprecated
 ---Add a column to the left of the active column, no focus is transfered
 ---FIXME: Does not move windows right
 function StackingColumnsLayout:addColumnLeft()
@@ -184,14 +185,13 @@ function StackingColumnsLayout:addColumnLeft()
   self.activeColumn = self.activeColumn + 1
 end
 
+---@deprecated
 ---Add a column to the right of the active column, no focus is transfered
 function StackingColumnsLayout:addColumnRight()
   local index = self.activeColumn + 1
   local newColumn = StackLayout.new()
   table.insert(self.columns, index, newColumn)
 end
-
--- TODO: remove column
 
 ---Check if leftmost column is active
 ---@return boolean
