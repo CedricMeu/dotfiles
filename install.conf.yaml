@@ -20,9 +20,8 @@
     ~/.zshrc: ./zsh/.zshrc
     ~/.oh-my-zsh/: ./ohmyzsh/
 
-    # Tmux
-    ~/.tmux.conf: ./tmux/tmux.conf
-    ~/.tmux/plugins/tpm/: ./tpm/
+    # Zellij
+    ~/.config/zellij/: ./zellij/
 
     # Git
     ~/.gitconfig: ./git/gitconfig
