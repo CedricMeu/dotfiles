@@ -20,19 +20,14 @@
     ~/.zshrc: ./zsh/.zshrc
     ~/.oh-my-zsh/: ./ohmyzsh/
 
-    # Tmux
-    ~/.tmux.conf: ./tmux/tmux.conf
-    ~/.tmux/plugins/tpm/: ./tpm/
+    # Zellij
+    ~/.config/zellij/: ./zellij/
 
     # Git
     ~/.gitconfig: ./git/gitconfig
 
     # Editor
     ~/.config/helix/: ./helix/
-
-    # Window Manager
-    #~/.config/yabai/: ./yabai/
-    #~/.config/skhd/: ./skhd/
 
 - shell:
   -
@@ -75,5 +70,3 @@
     command: rustup-init -y
     description: Install rust toolchain
     stdout: true
-  # - [brew services restart yabai, Start yabai]
-  # - [brew services restart skhd, Start skhd]

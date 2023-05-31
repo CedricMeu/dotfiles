@@ -1,4 +1,4 @@
-theme = "ayu_light_custom"
+theme = "nord"
 
 [editor]
 line-number = "relative"

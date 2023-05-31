@@ -58,7 +58,7 @@ cask "raspberry-pi-imager"
 
 # Misc.
 brew "node"
-brew "tmux"
+brew "zellij"
 brew "zoxide"
 cask "docker"
 cask "minecraft"
