@@ -46,14 +46,16 @@ render = true
 esc = ["collapse_selection", "keep_primary_selection"]
 i = ["insert_mode", "collapse_selection"]
 a = ["append_mode", "collapse_selection"]
-C-s = ":w"
-C-q = ":bc"
 "=" = ":format"
-C-w = { "|" = "vsplit", "minus" = "hsplit" }
-space = { w = { "|" = "vsplit", "minus" = "hsplit" } }
 
-[keys.insert]
-C-s = ":w"
+[keys.normal.space.w]
+d = "vsplit"
+n = "hsplit"
+
+[keys.normal.space.c]
+s = ":w"
+S = ":w!"
+q = ":bc"
 
 [keys.insert.j]
 k = "normal_mode"

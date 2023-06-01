@@ -88,6 +88,9 @@ alias ls="exa --icons -l"
 # alias for cd
 alias cd="z"
 
+# alias for cat
+alias cat="bat --theme=Nord"
+
 # alias for gcount
 alias gcount="git shortlog -s -n --all --no-merges"
 
