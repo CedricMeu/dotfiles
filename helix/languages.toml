@@ -70,7 +70,7 @@ name = "teal"
 scope = "source.teal"
 injection-regex = "teal"
 roots = ["tlconfig.lua"]
-comment-token = "#"
+comment-token = "--"
 file-types = ["tl"]
 indent = { tab-width = 2, unit = " " }
 language-server = { command = "teal-language-server" }
