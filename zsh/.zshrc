@@ -100,4 +100,3 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Use truecolor
 export TERM="xterm-256color"
-eval "$(zellij setup --generate-auto-start zsh)"
