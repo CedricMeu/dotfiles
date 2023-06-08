@@ -36,6 +36,7 @@ cask "microsoft-teams"
 cask "microsoft-word"
 cask "mochi"
 cask "obsidian"
+cask "rectangle"
 cask "zotero"
 
 # Devtools

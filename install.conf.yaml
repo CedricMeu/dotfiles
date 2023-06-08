@@ -29,6 +29,9 @@
     # Editor
     ~/.config/helix/: ./helix/
 
+    # Rectangle
+    ~/Library/Application Support/Rectangle/RectangleConfig.json: ./rectangle/RectangleConfig.json
+
 - shell:
   -
     command: chmod +x sysup
