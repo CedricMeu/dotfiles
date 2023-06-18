@@ -17,7 +17,7 @@ display-messages = true
 enable = true
 
 [editor.file-picker]
-hidden = true
+hidden = false
 
 [editor.cursor-shape]
 insert = "bar"
