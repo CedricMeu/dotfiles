@@ -1,4 +1,4 @@
-theme = "nord"
+theme = "catppuccin_latte"
 
 [editor]
 line-number = "relative"
@@ -8,6 +8,7 @@ auto-format = true
 scroll-lines = 1
 true-color = true
 idle-timeout = 50
+rulers = [88]
 
 [editor.lsp]
 display-inlay-hints = true
@@ -34,10 +35,10 @@ left = [
   "spacer",
   "version-control",
   "spacer",
-  "file-base-name",
+  "file-name",
   "file-type",
 ]
-right = ["diagnostics", "workspace-diagnostics"]
+right = ["diagnostics", "workspace-diagnostics", "total-line-numbers", "position-percentage"]
 
 [editor.indent-guides]
 render = true

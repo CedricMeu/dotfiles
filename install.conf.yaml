@@ -7,14 +7,12 @@
 - clean: ['~']
 
 - link:
-    # Install script
-    ~/bin/sysup: ./sysup
-  
     # Homebrew
     ~/.Brewfile: ./homebrew/Brewfile
 
     # Terminal
     ~/.config/alacritty/: ./alacritty/
+    ~/.config/kitty/: ./kitty/
 
     # Zsh
     ~/.zshrc: ./zsh/.zshrc
@@ -33,10 +31,6 @@
     ~/Library/Application Support/Rectangle/RectangleConfig.json: ./rectangle/RectangleConfig.json
 
 - shell:
-  -
-    command: chmod +x sysup
-    description: Making sysup executable
-    stdout: false
   -
     command: xcode-select -p > /dev/null || xcode-select --install
     description: xcode-select --install
@@ -57,10 +51,10 @@
     command: brew bundle --global
     description: Installing homebrew dependencies
     stdout: true
-  -
-    command: brew bundle cleanup --global --force
-    description: Removing unspecified homebrew dependencies
-    stdout: true
+  # -
+  #   command: brew bundle cleanup --global --force
+  #   description: Removing unspecified homebrew dependencies
+  #   stdout: true
   - 
     command: "if [[ $(which zsh) != $SHELL ]] ; then sudo chsh -s $(which zsh) $USER ; fi"
     description: Making zsh the default shell
