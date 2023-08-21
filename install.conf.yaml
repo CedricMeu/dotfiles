@@ -30,6 +30,9 @@
     # Rectangle
     ~/Library/Application Support/Rectangle/RectangleConfig.json: ./rectangle/RectangleConfig.json
 
+    # Clangd
+    ~/Library/Preferences/clangd/: ./clangd/
+
 - shell:
   -
     command: xcode-select -p > /dev/null || xcode-select --install

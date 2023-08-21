@@ -68,5 +68,4 @@ source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev="af40989c
 [[language]]
 name = "cpp"
 auto-format = true
-language-server = { command = "clangd", args = ["--clang-tidy", "--enable-config"]}
-config = { inlayHints = { enabled = "on" } }
+language-server = { command = "/usr/local/opt/llvm/bin/clangd", args = ["--clang-tidy", "--enable-config", "--inlay-hints"]}
