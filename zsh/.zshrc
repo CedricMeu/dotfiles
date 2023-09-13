@@ -83,7 +83,7 @@ export PATH="/usr/local/sbin:$PATH"
 alias v="hx"
 
 # alis for ls
-alias ls="exa --icons -l --group-directories-first"
+alias ls="exa --icons --group-directories-first"
 
 # alias for cd
 alias cd="z"

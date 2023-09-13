@@ -33,6 +33,9 @@
     # Clangd
     ~/Library/Preferences/clangd/: ./clangd/
 
+    # Btop
+    ~/.config/btop/: ./btop/
+
 - shell:
   -
     command: xcode-select -p > /dev/null || xcode-select --install
