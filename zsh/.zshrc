@@ -1,5 +1,5 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Enjoy the silence
+unsetopt BEEP
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -20,16 +20,14 @@ zstyle ':omz:update' frequency 7
 DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to enable command auto-correction.
-#ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 # change the command execution time
 # stamp shown in the history command output.
 HIST_STAMPS="dd/mm/yyyy"
 
 # Which plugins would you like to load?
-plugins=(
-  git
-)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf-tab)
 
 # source oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -47,60 +45,19 @@ else
 fi
 
 zstyle ':completion:*' rehash true
-# export PATH="/usr/local/anaconda3/bin:$PATH"  # commented out by conda initialize
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# Python3
-alias python="python3"
 
 # source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Zoxide
-eval "$(zoxide init zsh)"
-
-# Pypath
-alias pypath='python -c "import sys; [print(p) for p in sys.path]"'
-
 # sbin for homebrew
 export PATH="/usr/local/sbin:$PATH"
 
-# alias for nvim
-alias v="hx"
-
-# alis for ls
-alias ls="exa --icons --group-directories-first"
-
-# alias for cd
-alias cd="z"
-
-# alias for cat
-alias cat="bat --theme=Nord"
-
-# alias for gcount
-alias gcount="git shortlog -s -n --all --no-merges"
-
-# plugins
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Use truecolor
-export TERM="xterm-256color"
-
+export LDFLAGS="-L/opt/homebrew/opt/llvm@14/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm@14/include"
+export PATH="/opt/homebrew/opt/llvm@14/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 export FZF_THEME_CATPPUCCIN_LATTE=" \
 --color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
@@ -122,10 +79,34 @@ export FZF_THEME_CATPPUCCIN_MOCHA=" \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS$FZF_THEME_CATPPUCCIN_LATTE"
-  --height 60% \
-  --border sharp \
+export FZF_THEME_PAPERCOLOR_LIGHT=" \
+--color=fg:#1c1c1c,bg:#eeeeee,hl:#ff5faf \
+--color=fg+:#1c1c1c,bg+:#d0d0d0,hl+:#ff5faf \
+--color=info:#d70087,prompt:#d70087,pointer:#d70087 \
+--color=marker:#8700af,spinner:#d70087,header:#8700af \
+--color=gutter:-1"
+
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS$FZF_THEME_PAPERCOLOR_LIGHT"
+  --ansi \
+  --height 75% \
+  --border bold \
   --layout reverse \
   --prompt '∷ ' \
   --pointer ▶ \
-  --marker ⇒"
+  --marker  \
+  --margin 1 \
+  --padding 1"
+
+alias ls="exa -a --icons --color=always --group-directories-first"
+alias cat="bat --theme Dracula"
+
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+
+eval "$(zoxide init zsh)"
+alias cd="z"
+
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+
+export PATH="$HOME/bin:$PATH"
+
+export PATH="/usr/local/opt/llvm/bin:$PATH"

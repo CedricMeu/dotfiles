@@ -12,19 +12,14 @@
 #: the OSes font system. When bold_font or bold_italic_font is set to
 #: auto on macOS, the priority of bold fonts is semi-bold, bold,
 #: heavy. Setting them manually is useful for font families that have
-#: many weight variants like Book, Medium, Thick, etc. For example::A
+#: many weight variants like Book, Medium, Thick, etc. For example::
 
-font_family			Andale Mono Regular
-bold_font			Andale Mono Bold
-italic_font      	Andale Mono Italic
-bold_italic_font 	Andale Mono Bold Italic
+font_family			CaskaydiaCove Nerd Font Mono Regular
+bold_font			CaskaydiaCove Nerd Font Mono Bold
+italic_font      	CaskaydiaCove Nerd Font Mono Italic
+bold_italic_font 	CaskaydiaCove Nerd Font Mono Bold Italic
 
-# font_family		    CaskaydiaCove Nerd Font Mono Regular
-# bold_font			CaskaydiaCove Nerd Font Mono Bold
-# italic_font      	CaskaydiaCove Nerd Font Mono Italic
-# bold_italic_font 	CaskaydiaCove Nerd Font Mono Bold Italic
-
-font_size 14.0
+font_size 11
 
 #: Font size (in pts)
 
@@ -184,7 +179,7 @@ box_drawing_scale 0.5, 1, 1.5, 2
 #: arrive at a pixel value. There must be four values corresponding to
 #: thin, normal, thick, and very thick lines.
 
-undercurl_style thick-sparse
+# undercurl_style thick-sparse
 
 #: The style with which undercurls are rendered. This option takes the
 #: form (thin|thick)-(sparse|dense). Thin and thick control the
@@ -682,7 +677,7 @@ undercurl_style thick-sparse
 
 #: Terminal bell {{{
 
-# enable_audio_bell no
+# enable_audio_bell yes
 
 #: The audio bell. Useful to disable it in environments that require
 #: silence.
@@ -766,7 +761,7 @@ enabled_layouts tall, *
 #: start_resizing_window. The cells value is used for horizontal
 #: resizing, and the lines value is used for vertical resizing.
 
-window_border_width 0px
+# window_border_width 8px
 
 #: The width of window borders. Can be either in pixels (px) or pts
 #: (pt). Values in pts will be rounded to the nearest number of pixels
@@ -774,14 +769,14 @@ window_border_width 0px
 #: to be pts. Note that borders are displayed only when more than one
 #: window is visible. They are meant to separate multiple windows.
 
-draw_minimal_borders no
+# draw_minimal_borders yes
 
 #: Draw only the minimum borders needed. This means that only the
 #: borders that separate the window from a neighbor are drawn. Note
 #: that setting a non-zero window_margin_width overrides this and
 #: causes all borders to be drawn.
 
-window_margin_width 0
+# window_margin_width 0
 
 #: The window margin (in pts) (blank area outside the border). A
 #: single value sets all four sides. Two values set the vertical and
@@ -811,7 +806,7 @@ placement_strategy top-left
 #: this option. Using a value of center means the cell area will be
 #: placed centrally. A value of top-left means the padding will be
 #: only at the bottom and right edges.
-active_border_color #275e83
+# active_border_color #275e83
 
 #: The color for the border of the active window. Set this to none to
 #: not draw borders around the active window.
@@ -824,7 +819,7 @@ active_border_color #275e83
 #: The color for the border of inactive windows in which a bell has
 #: occurred.
 
-inactive_text_alpha 0.6
+# inactive_text_alpha 0.6
 
 #: Fade the text in inactive windows by the specified amount (a number
 #: between zero and one, with zero being fully faded).
@@ -875,7 +870,7 @@ inactive_text_alpha 0.6
 #: first number is used so that kitty is "ready" quickly after the end
 #: of resizing, while not also continuously redrawing, to save energy.
 
-# resize_in_steps no
+resize_in_steps yes
 
 #: Resize the OS window in steps as large as the cells, instead of
 #: with the usual pixel accuracy. Combined with initial_window_width
@@ -1245,6 +1240,7 @@ tab_title_template "[{index}] {fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.
 #: Advanced {{{
 
 # shell .
+shell /bin/zsh --login --interactive -c "zellij attach --index 0 || zellij"
 
 #: The shell program to execute. The default value of . means to use
 #: whatever shell is set as the default shell for the current user.
@@ -1498,7 +1494,7 @@ tab_title_template "[{index}] {fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.
 #: This option must be a comma separated list of the above values.
 #: This only source the first valid one in the above order.
 
-# term xterm-kitty
+term xterm-256color
 
 #: The value of the TERM environment variable to set. Changing this
 #: can break many terminal programs, only change it if you know what
@@ -1874,8 +1870,10 @@ macos_quit_when_last_window_closed yes
 
 #: New window
 
-map kitty_mod+enter new_window_with_cwd
-map cmd+enter       new_window_with_cwd
+map kitty_mod+enter no_op
+map cmd+enter       no_op
+# map kitty_mod+enter new_window_with_cwd
+# map cmd+enter       new_window_with_cwd
 
 #::  You can open a new kitty window running an arbitrary program, for
 #::  example::
@@ -1905,6 +1903,8 @@ map cmd+enter       new_window_with_cwd
 
 #: New OS window
 
+map kitty_mod+n no_op
+map cmd+n       no_op
 # map kitty_mod+n new_os_window
 # map cmd+n       new_os_window
 
@@ -1914,15 +1914,19 @@ map cmd+enter       new_window_with_cwd
 
 #: Close window
 
+map kitty_mod+w no_op
+map shift+cmd+d no_op
 # map kitty_mod+w close_window
 # map shift+cmd+d close_window
 
 #: Next window
 
+map kitty_mod+] no_op
 # map kitty_mod+] next_window
 
 #: Previous window
 
+map kitty_mod+[ no_op
 # map kitty_mod+[ previous_window
 
 #: Move window forward
@@ -1939,6 +1943,8 @@ map cmd+enter       new_window_with_cwd
 
 #: Start resizing window
 
+map kitty_mod+r no_op
+map cmd+r       no_op
 # map kitty_mod+r start_resizing_window
 # map cmd+r       start_resizing_window
 
@@ -2013,36 +2019,49 @@ map cmd+enter       new_window_with_cwd
 
 #: Next tab
 
+map kitty_mod+right no_op
+map shift+cmd+]     no_op
+map ctrl+tab        no_op
 # map kitty_mod+right next_tab
 # map shift+cmd+]     next_tab
 # map ctrl+tab        next_tab
 
 #: Previous tab
 
+map kitty_mod+left no_op
+map shift+cmd+[    no_op
+map ctrl+shift+tab no_op
 # map kitty_mod+left previous_tab
 # map shift+cmd+[    previous_tab
 # map ctrl+shift+tab previous_tab
 
 #: New tab
 
-map kitty_mod+t new_tab_with_cwd
-map cmd+t       new_tab_with_cwd
+map kitty_mod+t no_op
+map cmd+t       no_op
+# map kitty_mod+t new_tab_with_cwd
+# map cmd+t       new_tab_with_cwd
 
 #: Close tab
 
+map kitty_mod+q no_op
+map cmd+w       no_op
 # map kitty_mod+q close_tab
 # map cmd+w       close_tab
 
 #: Close OS window
 
+map shift+cmd+w no_op
 # map shift+cmd+w close_os_window
 
 #: Move tab forward
 
+map kitty_mod+. no_op
 # map kitty_mod+. move_tab_forward
 
 #: Move tab backward
 
+map kitty_mod+, no_op
 # map kitty_mod+, move_tab_backward
 
 #: Set tab title
@@ -2070,6 +2089,7 @@ map cmd+t       new_tab_with_cwd
 
 #: Next layout
 
+map kitty_mod+l no_op
 # map kitty_mod+l next_layout
 
 

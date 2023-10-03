@@ -18,9 +18,6 @@
     ~/.zshrc: ./zsh/.zshrc
     ~/.oh-my-zsh/: ./ohmyzsh/
 
-    # Zellij
-    ~/.config/zellij/: ./zellij/
-
     # Git
     ~/.gitconfig: ./git/gitconfig
 
@@ -57,17 +54,13 @@
     command: brew bundle --global
     description: Installing homebrew dependencies
     stdout: true
-  # -
-  #   command: brew bundle cleanup --global --force
-  #   description: Removing unspecified homebrew dependencies
-  #   stdout: true
   - 
     command: "if [[ $(which zsh) != $SHELL ]] ; then sudo chsh -s $(which zsh) $USER ; fi"
     description: Making zsh the default shell
     stdout: false
   - 
     command: git submodule update --init --recursive
-    description: Installing submodules
+    description: Updating submodules
     stdout: false
   - 
     command: rustup-init -y

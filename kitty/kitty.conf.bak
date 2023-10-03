@@ -12,19 +12,14 @@
 #: the OSes font system. When bold_font or bold_italic_font is set to
 #: auto on macOS, the priority of bold fonts is semi-bold, bold,
 #: heavy. Setting them manually is useful for font families that have
-#: many weight variants like Book, Medium, Thick, etc. For example::A
+#: many weight variants like Book, Medium, Thick, etc. For example::
 
-font_family			Andale Mono Regular
-bold_font			Andale Mono Bold
-italic_font      	Andale Mono Italic
-bold_italic_font 	Andale Mono Bold Italic
+font_family			CaskaydiaCove Nerd Font Mono Regular
+bold_font			CaskaydiaCove Nerd Font Mono Bold
+italic_font      	CaskaydiaCove Nerd Font Mono Italic
+bold_italic_font 	CaskaydiaCove Nerd Font Mono Bold Italic
 
-# font_family		    CaskaydiaCove Nerd Font Mono Regular
-# bold_font			CaskaydiaCove Nerd Font Mono Bold
-# italic_font      	CaskaydiaCove Nerd Font Mono Italic
-# bold_italic_font 	CaskaydiaCove Nerd Font Mono Bold Italic
-
-font_size 14.0
+font_size 12.0
 
 #: Font size (in pts)
 
@@ -682,7 +677,7 @@ undercurl_style thick-sparse
 
 #: Terminal bell {{{
 
-# enable_audio_bell no
+# enable_audio_bell yes
 
 #: The audio bell. Useful to disable it in environments that require
 #: silence.
@@ -766,7 +761,7 @@ enabled_layouts tall, *
 #: start_resizing_window. The cells value is used for horizontal
 #: resizing, and the lines value is used for vertical resizing.
 
-window_border_width 0px
+window_border_width 5px
 
 #: The width of window borders. Can be either in pixels (px) or pts
 #: (pt). Values in pts will be rounded to the nearest number of pixels
@@ -774,7 +769,7 @@ window_border_width 0px
 #: to be pts. Note that borders are displayed only when more than one
 #: window is visible. They are meant to separate multiple windows.
 
-draw_minimal_borders no
+draw_minimal_borders yes
 
 #: Draw only the minimum borders needed. This means that only the
 #: borders that separate the window from a neighbor are drawn. Note
@@ -796,14 +791,14 @@ window_margin_width 0
 #: set the vertical and horizontal sides. Three values set top,
 #: horizontal and bottom. Four values set top, right, bottom and left.
 
-# window_padding_width 0
+window_padding_width 0
 
 #: The window padding (in pts) (blank area between the text and the
 #: window border). A single value sets all four sides. Two values set
 #: the vertical and horizontal sides. Three values set top, horizontal
 #: and bottom. Four values set top, right, bottom and left.
 
-placement_strategy top-left
+# placement_strategy center
 
 #: When the window size is not an exact multiple of the cell size, the
 #: cell area of the terminal window will have some extra padding on
@@ -811,11 +806,13 @@ placement_strategy top-left
 #: this option. Using a value of center means the cell area will be
 #: placed centrally. A value of top-left means the padding will be
 #: only at the bottom and right edges.
-active_border_color #275e83
+
+active_border_color #f8f8f2
 
 #: The color for the border of the active window. Set this to none to
 #: not draw borders around the active window.
-# inactive_border_color #6272a4
+
+inactive_border_color #6272a4
 
 #: The color for the border of inactive windows.
 
@@ -824,7 +821,7 @@ active_border_color #275e83
 #: The color for the border of inactive windows in which a bell has
 #: occurred.
 
-inactive_text_alpha 0.6
+inactive_text_alpha 0.25
 
 #: Fade the text in inactive windows by the specified amount (a number
 #: between zero and one, with zero being fully faded).
@@ -925,7 +922,7 @@ tab_bar_edge bottom
 #: The second number is the margin between the tab bar and the
 #: contents of the current tab.
 
-tab_bar_style powerline
+tab_bar_style fade
 
 #: The tab bar style, can be one of:
 
@@ -956,7 +953,7 @@ tab_bar_style powerline
 #: The horizontal alignment of the tab bar, can be one of: left,
 #: center, right.
 
-tab_bar_min_tabs 2
+tab_bar_min_tabs 1
 
 #: The minimum number of tabs that must exist before the tab bar is
 #: shown.
@@ -983,7 +980,7 @@ tab_bar_min_tabs 2
 #: The separator between tabs in the tab bar when using separator as
 #: the tab_bar_style.
 
-tab_powerline_style round
+tab_powerline_style slanted
 
 #: The powerline separator style between tabs in the tab bar when
 #: using powerline as the tab_bar_style, can be one of: angled,
@@ -2391,6 +2388,6 @@ map cmd+t       new_tab_with_cwd
 
 
 # BEGIN_KITTY_THEME
-# PaperColor Light
+# Dracula
 include current-theme.conf
 # END_KITTY_THEME

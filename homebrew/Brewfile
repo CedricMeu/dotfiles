@@ -1,14 +1,12 @@
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-fonts"
-tap "homebrew/core"
 tap "homebrew/cask-drivers"
 tap "homebrew/services"
 tap "popcorn-official/popcorn-desktop", "https://github.com/popcorn-official/popcorn-desktop.git"
 
 # Zsh
-brew "zsh-syntax-highlighting"
-brew "zsh-autosuggestions"
+# brew "zsh-syntax-highlighting"
+# brew "zsh-autosuggestions"
 
 # Lsp
 brew "lua-language-server"
@@ -18,15 +16,14 @@ brew "python-lsp-server"
 brew "taplo"
 brew "typescript-language-server"
 brew "vscode-langservers-extracted"
+brew "texlab"
+brew "ltex-ls"
 
 # Fonts
-cask "font-caskaydia-cove-nerd-font"
+# cask "font-caskaydia-cove-nerd-font"
 
 # Productivity
-cask "alacritty"
 cask "kitty"
-cask "cheatsheet"
-cask "drawio"
 cask "languagetool"
 cask "logi-options-plus"
 cask "messenger"
@@ -47,20 +44,18 @@ brew "cmake"
 brew "exa"
 brew "fzf"
 brew "git"
-brew "helix"
+brew "helix", args:["HEAD"]
 brew "nnn"
 brew "pnpm"
 brew "rust-analyzer"
 brew "rustup"
 brew "typst"
 brew "wget"
-cask "anaconda"
 cask "mactex-no-gui"
 cask "raspberry-pi-imager"
 
 # Misc.
 brew "node"
-brew "zellij"
 brew "zoxide"
 cask "cloudflare-warp"
 cask "docker"

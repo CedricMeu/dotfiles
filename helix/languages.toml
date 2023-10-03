@@ -1,13 +1,41 @@
+# LSP configs
+
+[language-server.pylsp]
+command = "pylsp"
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+[language-server.ruff]
+command = "ruff-lsp"
+
+[language-server.typst]
+command = "typst-lsp"
+
+[language-server.clangd-16]
+command = "clangd"
+
+[language-server.ltex]
+command = "ltex-ls"
+
+# Grammars
+
+[[grammar]]
+name = "typst"
+source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev="bb59b2b737a35e5ddae67be8e8275633648d758f" }
+
+# Languages
+
 [[language]]
 name = "lua"
 auto-format = true
 
 [[language]]
 name = "python"
-auto-format = true
+# auto-format = true
 roots = ["pyproject.toml"]
-language-server = { command = "pyright-langserver", args = ["--stdio"] }
-config = {}
+language-servers = ["pyright", "ruff"]
 
 [[language]]
 name = "rust"
@@ -26,19 +54,11 @@ auto-format = true
 name = "typescript"
 indent = { tab-width = 4, unit = " " }
 auto-format = true
-# language-server = { command = "multi-lsp-proxy", args = [
-#   "--config",
-#   "~/.config/helix/multi-lsp-proxy/typescript-emmet.toml"
-# ]}
 
 [[language]]
 name = "tsx"
 indent = { tab-width = 4, unit = " " }
 auto-format = true
-# language-server = { command = "multi-lsp-proxy", args = [
-#   "--config",
-#   "~/.config/helix/multi-lsp-proxy/typescript-emmet.toml"
-# ]}
 
 [[language]]
 name = "javascript"
@@ -56,16 +76,22 @@ scope = "source.typst"
 injection-regex = "typst"
 roots = []
 comment-token = "//"
+language-servers = ["typst", "ltex"]
 file-types = ["typ"]
 indent = { tab-width = 2, unit = " " }
-language-server = { command = "typst-lsp" }
-
-[[grammar]]
-name = "typst"
-# source = { git = "https://github.com/SeniorMars/tree-sitter-typst", rev="2e66ef4b798a26f0b82144143711f3f7a9e8ea35" }
-source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev="af40989c1a2e724a9625cae412c17a60969280ca" }
+auto-format = true
 
 [[language]]
 name = "cpp"
 auto-format = true
-language-server = { command = "/usr/local/opt/llvm/bin/clangd", args = ["--clang-tidy", "--enable-config", "--inlay-hints"]}
+language-servers = ["clangd-16"]
+
+[[language]]
+name = "latex"
+auto-format = true
+language-servers = ["texlab", "ltex"]
+
+[[language]]
+name = "markdown"
+auto-format = true
+language-servers = ["marksman", "ltex"]
