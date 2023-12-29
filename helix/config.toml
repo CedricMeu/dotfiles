@@ -1,4 +1,4 @@
-theme = "papercolor-light"
+theme = "ayu_light_custom"
 
 [editor]
 line-number = "relative"
@@ -67,6 +67,9 @@ C-l = "jump_view_right"
 C-a = "goto_line_start"
 C-e = "goto_line_end"
 
+[keys.normal.space]
+space = "command_palette"
+
 [keys.normal.space.w]
 n = "vsplit"
 d = "hsplit"
@@ -78,7 +81,7 @@ q = ":bc"
 
 [keys.insert]
 # Escape insert mode
-j = { k = "normal_mode" }
+j = { j = "normal_mode" }
 
 # Navigate in insert mode
 C-p = "move_line_up"

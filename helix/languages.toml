@@ -13,17 +13,11 @@ command = "ruff-lsp"
 [language-server.typst]
 command = "typst-lsp"
 
-[language-server.clangd-16]
+[language-server.clangd]
 command = "clangd"
 
 [language-server.ltex]
 command = "ltex-ls"
-
-# Grammars
-
-[[grammar]]
-name = "typst"
-source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev="bb59b2b737a35e5ddae67be8e8275633648d758f" }
 
 # Languages
 
@@ -33,7 +27,7 @@ auto-format = true
 
 [[language]]
 name = "python"
-# auto-format = true
+auto-format = true
 roots = ["pyproject.toml"]
 language-servers = ["pyright", "ruff"]
 
@@ -72,19 +66,15 @@ auto-format = true
 
 [[language]]
 name = "typst"
-scope = "source.typst"
-injection-regex = "typst"
-roots = []
-comment-token = "//"
 language-servers = ["typst", "ltex"]
-file-types = ["typ"]
 indent = { tab-width = 2, unit = " " }
 auto-format = true
 
 [[language]]
 name = "cpp"
 auto-format = true
-language-servers = ["clangd-16"]
+language-servers = ["clangd"]
+indent = { tab-width = 2, unit = " " }
 
 [[language]]
 name = "latex"
@@ -95,3 +85,7 @@ language-servers = ["texlab", "ltex"]
 name = "markdown"
 auto-format = true
 language-servers = ["marksman", "ltex"]
+
+[[language]]
+name = "glsl"
+file-types = ["glsl", "vs", "tcs", "tes", "fs"]

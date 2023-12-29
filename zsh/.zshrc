@@ -27,7 +27,7 @@ ENABLE_CORRECTION="false"
 HIST_STAMPS="dd/mm/yyyy"
 
 # Which plugins would you like to load?
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf-tab)
+plugins=(git fzf-tab zsh-autosuggestions zsh-syntax-highlighting)
 
 # source oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -37,14 +37,10 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='hx'
-else
-  export EDITOR='hx'
-fi
+# Preferred editor
+export EDITOR='hx'
 
-zstyle ':completion:*' rehash true
+# zstyle ':completion:*' rehash true
 
 # source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -52,9 +48,6 @@ zstyle ':completion:*' rehash true
 # sbin for homebrew
 export PATH="/usr/local/sbin:$PATH"
 
-export LDFLAGS="-L/opt/homebrew/opt/llvm@14/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm@14/include"
-export PATH="/opt/homebrew/opt/llvm@14/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
@@ -86,8 +79,16 @@ export FZF_THEME_PAPERCOLOR_LIGHT=" \
 --color=marker:#8700af,spinner:#d70087,header:#8700af \
 --color=gutter:-1"
 
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS$FZF_THEME_PAPERCOLOR_LIGHT"
+export FZF_THEME_PAPERCOLOR_LIGHT=" \
+--color=fg:#1c1c1c,bg:#eeeeee,hl:#ff5faf \
+--color=fg+:#1c1c1c,bg+:#d0d0d0,hl+:#ff5faf \
+--color=info:#d70087,prompt:#d70087,pointer:#d70087 \
+--color=marker:#8700af,spinner:#d70087,header:#8700af \
+--color=gutter:-1"
+
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS"
   --ansi \
+  --color=16 \
   --height 75% \
   --border bold \
   --layout reverse \
@@ -98,15 +99,18 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS$FZF_THEME_PAPERCOLOR_LIGHT"
   --padding 1"
 
 alias ls="exa -a --icons --color=always --group-directories-first"
-alias cat="bat --theme Dracula"
+alias cat="bat --theme ansi"
 
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 eval "$(zoxide init zsh)"
 alias cd="z"
 
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 
 export PATH="$HOME/bin:$PATH"
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+eval "$(pyenv virtualenv-init -)"

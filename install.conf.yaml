@@ -13,6 +13,7 @@
     # Terminal
     ~/.config/alacritty/: ./alacritty/
     ~/.config/kitty/: ./kitty/
+    ~/.config/wezterm/: ./wezterm/
 
     # Zsh
     ~/.zshrc: ./zsh/.zshrc

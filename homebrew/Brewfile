@@ -4,11 +4,8 @@ tap "homebrew/cask-drivers"
 tap "homebrew/services"
 tap "popcorn-official/popcorn-desktop", "https://github.com/popcorn-official/popcorn-desktop.git"
 
-# Zsh
-# brew "zsh-syntax-highlighting"
-# brew "zsh-autosuggestions"
-
 # Lsp
+brew "bash-language-server"
 brew "lua-language-server"
 brew "marksman"
 brew "pyright"
@@ -20,7 +17,7 @@ brew "texlab"
 brew "ltex-ls"
 
 # Fonts
-# cask "font-caskaydia-cove-nerd-font"
+cask "font-caskaydia-cove-nerd-font"
 
 # Productivity
 cask "kitty"
