@@ -1,16 +1,19 @@
-theme = "ayu_light_custom"
+theme = "papercolor-light"
 
 [editor]
 line-number = "relative"
-bufferline = "always"
 color-modes = true
 auto-format = true
 auto-save = true
 scroll-lines = 1
 true-color = true
 idle-timeout = 50
-# rulers = [88]
+rulers = [88]
 undercurl = false
+
+[editor.bufferline]
+show = "always"
+style = "wrap"
 
 [editor.lsp]
 display-inlay-hints = true
@@ -67,9 +70,6 @@ C-l = "jump_view_right"
 C-a = "goto_line_start"
 C-e = "goto_line_end"
 
-[keys.normal.space]
-space = "command_palette"
-
 [keys.normal.space.w]
 n = "vsplit"
 d = "hsplit"
@@ -79,9 +79,28 @@ s = ":w"
 S = ":wa"
 q = ":bc"
 
+[keys.normal.space.space]
+# Extensions using custom script
+# Interactive search in current working directory
+s = ":pipe-to helix-ext search --current"
+# Interactive search in current working directory (include path name in the search)
+S = ":pipe-to helix-ext search --current-inc-path"
+# Interactive search in current git directory
+w = ":pipe-to helix-ext search --workspace"
+# Interactive search in current git directory (include path name in the search)
+W = ":pipe-to helix-ext search --workspace-inc-path"
+# Interactive search in current buffer
+b = ":pipe-to helix-ext search --buffer"
+# Git status
+m = ":pipe-to helix-ext git --status"
+# Git blame
+B = ":pipe-to helix-ext git --blame"
+# Git browse github repo using default browser
+O = ":pipe-to helix-ext git --browse"
+
 [keys.insert]
 # Escape insert mode
-j = { j = "normal_mode" }
+j = { k = "normal_mode" }
 
 # Navigate in insert mode
 C-p = "move_line_up"

@@ -1,0 +1,26 @@
+themes {
+    papercolor-light {
+        fg "#444444"
+        bg "#eeeeee"
+        black "#eeeeee"
+        red "#af0000"
+        green "#008700"
+        yellow "#5f8700"
+        blue "#0087af"
+        magenta "#878787"
+        cyan "#005f87"
+        white "#444444"
+        orange "#d75f00"
+        // fg "#585858"
+        // bg "#eeeeee"
+        // black "#d0d0d0"
+        // red "#5faf5f"
+        // green "#005f87"
+        // yellow "#ffaf00"
+        // blue "#ffaf00"
+        // magenta "#af87d7"
+        // cyan "#00afaf"
+        // white "#585858"
+        // orange "#d75f00"
+    }
+}

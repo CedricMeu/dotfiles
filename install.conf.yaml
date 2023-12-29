@@ -7,21 +7,17 @@
 - clean: ['~']
 
 - link:
-    # Install script
-    ~/bin/sysup: ./sysup
-  
     # Homebrew
     ~/.Brewfile: ./homebrew/Brewfile
 
     # Terminal
     ~/.config/alacritty/: ./alacritty/
+    ~/.config/kitty/: ./kitty/
+    ~/.config/wezterm/: ./wezterm/
 
     # Zsh
     ~/.zshrc: ./zsh/.zshrc
     ~/.oh-my-zsh/: ./ohmyzsh/
-
-    # Zellij
-    ~/.config/zellij/: ./zellij/
 
     # Git
     ~/.gitconfig: ./git/gitconfig
@@ -32,11 +28,16 @@
     # Window Manager
     ~/.hammerspoon/: ./hammerspoon/
 
+    # # Rectangle
+    # ~/Library/Application Support/Rectangle/RectangleConfig.json: ./rectangle/RectangleConfig.json
+
+    # Clangd
+    ~/Library/Preferences/clangd/: ./clangd/
+
+    # Btop
+    ~/.config/btop/: ./btop/
+
 - shell:
-  -
-    command: chmod +x sysup
-    description: Making sysup executable
-    stdout: false
   -
     command: xcode-select -p > /dev/null || xcode-select --install
     description: xcode-select --install
@@ -57,17 +58,13 @@
     command: brew bundle --global
     description: Installing homebrew dependencies
     stdout: true
-  -
-    command: brew bundle cleanup --global --force
-    description: Removing unspecified homebrew dependencies
-    stdout: true
   - 
     command: "if [[ $(which zsh) != $SHELL ]] ; then sudo chsh -s $(which zsh) $USER ; fi"
     description: Making zsh the default shell
     stdout: false
   - 
     command: git submodule update --init --recursive
-    description: Installing submodules
+    description: Updating submodules
     stdout: false
   - 
     command: rustup-init -y
@@ -76,14 +73,6 @@
   -
     command: open -a Hammerspoon
     description: Start Hammerspoon
-    stdout: false
-  -
-    command: luarocks install tl
-    description: Install teal
-    stdout: false
-  -
-    command: luarocks install --dev teal-language-server
-    description: Install teal-language-server
     stdout: false
   -
     command: hx --grammar fetch

@@ -1,5 +1,5 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Enjoy the silence
+unsetopt BEEP
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -20,16 +20,14 @@ zstyle ':omz:update' frequency 7
 DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 # change the command execution time
 # stamp shown in the history command output.
 HIST_STAMPS="dd/mm/yyyy"
 
 # Which plugins would you like to load?
-plugins=(
-  git
-)
+plugins=(git fzf-tab zsh-autosuggestions zsh-syntax-highlighting)
 
 # source oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -39,65 +37,80 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='hx'
-else
-  export EDITOR='hx'
-fi
+# Preferred editor
+export EDITOR='hx'
 
-zstyle ':completion:*' rehash true
-# export PATH="/usr/local/anaconda3/bin:$PATH"  # commented out by conda initialize
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# Python3
-alias python="python3"
+# zstyle ':completion:*' rehash true
 
 # source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Zoxide
-eval "$(zoxide init zsh)"
-
-# Pypath
-alias pypath='python -c "import sys; [print(p) for p in sys.path]"'
-
 # sbin for homebrew
 export PATH="/usr/local/sbin:$PATH"
 
-# alias for nvim
-alias v="hx"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
-# alis for ls
-alias ls="exa --icons -l"
+export FZF_THEME_CATPPUCCIN_LATTE=" \
+--color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
+--color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
+--color=marker:#dc8a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39"
 
-# alias for cd
+export FZF_THEME_CATPPUCCIN_FRAPPE=" \
+--color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
+--color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
+--color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
+
+export FZF_THEME_CATPPUCCIN_MACCHIATO=" \
+--color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+--color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+--color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
+
+export FZF_THEME_CATPPUCCIN_MOCHA=" \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+
+export FZF_THEME_PAPERCOLOR_LIGHT=" \
+--color=fg:#1c1c1c,bg:#eeeeee,hl:#ff5faf \
+--color=fg+:#1c1c1c,bg+:#d0d0d0,hl+:#ff5faf \
+--color=info:#d70087,prompt:#d70087,pointer:#d70087 \
+--color=marker:#8700af,spinner:#d70087,header:#8700af \
+--color=gutter:-1"
+
+export FZF_THEME_PAPERCOLOR_LIGHT=" \
+--color=fg:#1c1c1c,bg:#eeeeee,hl:#ff5faf \
+--color=fg+:#1c1c1c,bg+:#d0d0d0,hl+:#ff5faf \
+--color=info:#d70087,prompt:#d70087,pointer:#d70087 \
+--color=marker:#8700af,spinner:#d70087,header:#8700af \
+--color=gutter:-1"
+
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS"
+  --ansi \
+  --color=16 \
+  --height 75% \
+  --border bold \
+  --layout reverse \
+  --prompt '∷ ' \
+  --pointer ▶ \
+  --marker  \
+  --margin 1 \
+  --padding 1"
+
+alias ls="exa -a --icons --color=always --group-directories-first"
+alias cat="bat --theme ansi"
+
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+
+eval "$(zoxide init zsh)"
 alias cd="z"
 
-# alias for cat
-alias cat="bat --theme=Nord"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 
-# alias for gcount
-alias gcount="git shortlog -s -n --all --no-merges"
+export PATH="$HOME/bin:$PATH"
 
-# plugins
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-# Use truecolor
-export TERM="xterm-256color"
-eval "$(zellij setup --generate-auto-start zsh)"
+eval "$(pyenv virtualenv-init -)"
